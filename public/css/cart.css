@@ -1,0 +1,61 @@
+#container{
+    margin: auto;
+    display: grid;
+    grid-template-rows: 9fr 1fr;
+    width: 100vw;
+    border: 0.5rem black solid;
+    background: rgb(187, 219, 122);
+}
+#container>*{
+    margin: auto;
+}
+#result{
+    display: grid;
+}
+.cart__book{
+    background: white;
+    display: grid;
+    max-height: 12rem;
+    grid-template-areas: 'price image'
+                        'title image'
+                        'blank remove';
+    width: 75%;
+    border: 0.25rem black solid;
+}
+.cart__book>#title{
+    grid-area: title;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+.cart__book>#price{
+    grid-area: price;
+}
+.cart__book>img{
+    grid-area: image;
+    max-height: 7rem;
+    max-height: 7rem;
+}
+#remove{
+    width:100%;
+    margin-bottom: 0.25rem;
+    margin-right: 0.25rem;
+    padding: 0.25rem;
+    background: red;
+    color: wheat;
+    width:5rem;
+    cursor: pointer;
+    grid-area: remove;
+    font-weight: 600;
+}
+#remove:hover{
+    background: rgb(206, 114, 114);
+
+}
+#buttons>*{
+    margin: auto;
+}
+#total{
+    margin:auto;
+    font-weight: 600;
+    font-size: 1.5rem; 
+}

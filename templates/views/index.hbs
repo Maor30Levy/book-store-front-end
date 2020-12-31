@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link rel="shortcut icon" href="img/book-store-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <div id="header" class="header">
+        <button id="shopping-cart">
+            <i class="fa fa-shopping-cart"></i>
+        </button>
+        <span></span>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="   User Name">
+            <input type="password" id="password" placeholder="   Password">
+            <button id="login">Login</button>
+        </form>
+
+        
+
+    </div>
+    <div id="container">     
+        <div id="main-box">            
+            <div id="search">
+                <form id="search-form">
+                    <input type="text" id="title" placeholder="Title">
+                    <input type="text" id="author" placeholder="Author">
+                    <input type="text" id="category" placeholder="Category">
+                    
+                    <input type="text" id="fromPrice" placeholder="From:Price">
+                    <input type="text" id="toPrice" placeholder="To:Price">
+                                               
+                    <input type="text" id="isbn" placeholder="ISBN(13)"> 
+                    <button id="search">Find Book</button>            
+                </form>
+                <div id="result-box" class="none">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+
+
+
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

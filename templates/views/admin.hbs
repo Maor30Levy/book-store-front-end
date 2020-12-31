@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="shortcut icon" href="img/book-store-icon.png" type="image/x-icon">
+
+    <title>Admin</title>
+</head>
+<body>
+<div id="container">
+    <div id="modal" class="none">
+        <div class="modal__box" id="modal-box">              
+        </div>
+        <div class="modal__buttons">
+            <button id="save-button">Save</button>
+            <button id="cancel-button">Cancel</button>
+        </div>  
+    </div>
+    <div id="search">
+                <form id="search-form">
+                    <input type="text" id="title" placeholder="Title">
+                    <input type="text" id="author" placeholder="Author">
+                    <input type="text" id="category" placeholder="Category">
+                    
+                    <input type="text" id="fromPrice" placeholder="From:Price">
+                    <input type="text" id="toPrice" placeholder="To:Price">
+                                               
+                    <input type="text" id="isbn" placeholder="ISBN(13)"> 
+                    <button id="search">Find Book</button>            
+                </form>
+                <div id="result-box" class="none">
+
+                </div>
+            </div>
+
+    <div id="sidebar" class="admin__sidebar">
+        <button id="logout">Logout</button>
+        <button id="logout-all">Logout All</button>
+        <button id="update-user" name="edit-button">Update User</button>
+        <button id="add-book" name="edit-button">Add a book record</button>
+    </div>
+</div>    
+    
+ 
+ <script type="module" src='js/admin.js'></script>   
+</body>
+</html>

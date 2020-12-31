@@ -1,0 +1,17 @@
+#main-box{
+    flex-grow: 1;
+    height: 100%;
+}
+
+#login-form{
+    display: grid;
+    padding: 0.5rem;
+    grid-template-columns: 2fr 2fr 1fr;
+}
+
+
+
+#shopping-cart{
+    font-size: 2rem;
+}
+
