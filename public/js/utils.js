@@ -72,12 +72,16 @@ export const renderResults=function (element, objArray,query,buttonsRenderFunc){
                     location.href=`/book/${obj.title}`;
                 });
             }else{
-                divElement.addEventListener('click',(event)=>{
+                // divElement.addEventListener('click',addSubQuery(event,key,obj,element,buttonsRenderFunc));
+                if(location.pathname[1]!=='b'){
+                    divElement.addEventListener('click',(event)=>{
                     const query = {};
                     const value = key==='price'?parseInt(obj[key]):obj[key];
                     query[key]=value;
                     getDataFromDataBase(element,query,buttonsRenderFunc);
-                });
+                    
+                });}
+                
             }
 
             if(key==='rating'){
@@ -142,6 +146,13 @@ export const renderAddCommentButton = ()=>{
         });
         button.appendChild(addCommentButton);
     }
+}
+
+export const addSubQuery = (event,key,obj,element,buttonsRenderFunc)=>{
+    const query = {};
+    const value = key==='price'?parseInt(obj[key]):obj[key];
+    query[key]=value;
+    getDataFromDataBase(element,query,buttonsRenderFunc);
 }
 
 
