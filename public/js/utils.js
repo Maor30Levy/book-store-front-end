@@ -1,5 +1,5 @@
 export const serverURL = 'https://maor30levy-book-store-back-end.herokuapp.com';
-export const bookFields = ['title','author','category','price','isbn','image'];
+export const bookFields = ['title','author','category','price','isbn','image','summary'];
 export const userFields = ['userName','password','email'];
 export let dataBase;
 export const initDataBase = async ()=>{
