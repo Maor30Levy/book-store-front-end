@@ -5,10 +5,24 @@
     font-family: Helvetica, Arial, sans-serif;
     z-index: 1;
 }
+html{
+    padding:0;
+}
+body{
+    padding:0;
+}
+#container{
+    padding: 0;
+
+}
+.fa{
+
+    display:inline;
+}
 .none{
     display: none;
 }
-#container{
+#main-box{
     display:flex;
     line-height: 1.4;
     color: #333333; 
@@ -17,10 +31,45 @@
 }
 
 #header{
+    padding: 0;
     width: 100vw;
     background: yellowgreen;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between; 
+    z-index: 100;
+}
+
+#login-form{
     display: grid;
-    grid-template-columns: 10% 40% 50%;
+    grid-template-areas:'input input input input button'
+                        'login  login login login login';
+
+}
+
+#admin-check{
+    grid-area: login;
+}
+
+#login-form>button{
+    grid-area: button;
+}
+
+
+#header-buttons{
+    display: flex;
+    flex-direction: row;
+    min-width:0;
+    max-width:20vw;
+    gap:0.125rem;
+}
+
+#header-buttons>button{
+    font-size: 2rem;
+}
+
+#header>*{
+    padding: 0.5rem;
 }
 
 input {
@@ -89,8 +138,10 @@ button:hover {
 }
 .book>#image{
     grid-area: image;
-    width: 10rem;
-    height: 15rem;
+    width:170px;
+    height: auto;
+    padding: 0;
+
 }
 .book>*{
     cursor: pointer;
@@ -102,7 +153,7 @@ button:hover {
 }
 .book>#buttons{
     grid-area:button;
-    
+    display: flex;
 }
 .book>#buttons:hover{
     background-color: white;
@@ -132,13 +183,26 @@ button:hover {
         min-width:100%;
         margin: 0;
     }
-    .fa{
 
-        display:inline;
+    #login-form{
+        width:65%;
+        align-self: flex-end;
+        min-width:0;
+        grid-template-columns: 1fr 2fr 2fr;
+        grid-template-areas:' login input input'
+                            ' login button button';
+
     }
-    #header{  
-        max-height: 10vh;
-        min-height: 10vh;
+
+
+    #login-form>button{
+        grid-area: button;
+        padding:0;
+    }
+ 
+
+    #shopping-cart{
+        max-width: 15%;
     }
     #result-box{
         display:flex;
@@ -149,6 +213,7 @@ button:hover {
         max-height: 50vh;
     }
     .book{
+        height:85vh;
         padding: 0;
         grid-template-areas: 'title title title  title title'
                             'author author author author author'
@@ -169,17 +234,23 @@ button:hover {
     #buttons{
         display:flex;
         flex-direction: column;
-        
+        justify-items: auto;
+        gap: 0.125rem;        
     }
+
+
     #search-form{
-    grid-template-rows: max-content;
+    display:flex;
+    max-width: 95vw;
+    flex-wrap: wrap;
     }
     #search-form>input{
-        grid-area: input;
+        padding: 0.5rem;
+        max-width: 33%;
+        min-width: 33%;
     }
     #search-form>button{
-        grid-row:3;
-        height: 10%;
-
+        min-width: 100%;
     }
+
 }

@@ -3,17 +3,7 @@
     height: 100%;
 }
 
-#login-form{
-    display: grid;
-    padding: 0.5rem;
-    grid-template-columns: 2fr 2fr 1fr;
-}
 
-
-
-#shopping-cart{
-    font-size: 2rem;
-}
 
 /* @media only screen and (max-width: 720px) {
     #book{
@@ -26,7 +16,7 @@
         margin: 0;
         height: 100%;
     }
-    #container{
+    #main-box{
         max-width: 100vw; 
         min-height: 100vh;
         margin: 0; 
