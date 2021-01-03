@@ -1,6 +1,6 @@
 *{
     margin:0 ;
-    padding: 1rem;
+    padding: 0.125rem;
     box-sizing: border-box;
     font-family: Helvetica, Arial, sans-serif;
     z-index: 1;
@@ -68,7 +68,7 @@ body{
     flex-direction: row;
     min-width:0;
     max-width:20vw;
-    gap:0.25rem;
+    gap:1rem;
 }
 
 #header-buttons>button{
