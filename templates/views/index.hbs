@@ -19,17 +19,34 @@
                 <button id="shopping-cart">
                     <i class="fa fa-shopping-cart"></i>
                 </button>
-            </div>        
+            </div>  
+            <div id="sign">
+                <div id="sign-in">Sign in</div>
+                <div id="sign-up">Sign up</div>
+            </div>                 
+        </div>
+        <div id="modal" class="none">
+            <div class="modal__box login" id="login-modal">              
             <form id="login-form">
+                <input type="text" id="login-username" placeholder="User Name">
+                <input type="password" id="login-password" placeholder="Password">
+                <button id="login">Login</button>
                 <div  id="admin-check">
-                    <input type="checkbox" name="admin">
+                    <input id="admin" type="checkbox" name="admin" value="admin">
                     Login as admin
                 </div>
-                <input type="text" id="username" placeholder="User Name">
-                <input type="password" id="password" placeholder="Password">
-                <button id="login">Login</button>
             </form>
-        </div>   
+            </div>
+            <div class="modal__box signup" id="signup-modal">              
+                <form id="signup-form">
+                    <input type="text" id="signup-username" placeholder="User Name">
+                    <input type="password" id="signup-password" placeholder="Password">               
+                    <input type="password" id="signup-confirm-password" placeholder="Confirm Password">               
+                    <input type="text" id="signup-email" placeholder="E-Mail">
+                    <button id="signup">Sign up</button>
+                </form>
+            </div>      
+    </div>   
         <div id="main-box">            
                 <div id="search">
                     <form id="search-form">
@@ -51,7 +68,7 @@
         <div id="footer"></div>
     </div>
 
-
+    <script type="module" src="js/header.js"></script>
     <script type="module" src="js/main.js"></script>
 </body>
 </html>

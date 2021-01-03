@@ -3,7 +3,48 @@
     height: 100%;
 }
 
+.modal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(192, 192, 192, 0.5);
+    display: grid;
+    justify-content: end;
+    grid-row: 2;
+    z-index:10;
+    padding: 0;
+    
+}
 
+.modal__box{
+    margin: 85px 0 0 0;
+    height: 80px;
+    display: flexbox;
+    width: 100%;
+    background: #abdb9f;
+    padding: 0.125rem;
+    overflow-y: auto;
+    justify-content: center;    
+}
+.signup{
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media only screen and (max-width: 720px) {
+    .modal__box {     
+        min-width: 100vw;
+    }
+    .login{
+        height:160px;
+    }
+    .signup{
+        height:180px;
+    }
+}
 
 /* @media only screen and (max-width: 720px) {
     #book{

@@ -12,7 +12,6 @@ if(sessionStorage.getItem('cart')){
 const form = document.getElementById('search-form');
 const inputList = form.querySelectorAll('input');
 const resultBox = document.getElementById('result-box');
-const loginForm = document.getElementById('login-form');
 const shoppingCart = document.getElementById('shopping-cart');
 
 const cartButton = (isbn,query)=>{
@@ -76,31 +75,7 @@ form.addEventListener('submit',async (event)=>{
     }
 });
 
-loginForm.addEventListener('submit',async (event)=>{
-    event.preventDefault();
-    const username = document.getElementById('username');
-    const password = document.getElementById('password');
-    try{
-        const result = await fetch(`${serverURL}/user/login`,{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                userName: username.value,
-                password: password.value
-            })
-            });
-        if(result.ok){
-                const token = await result.json();
-                sessionStorage.setItem('token', token.token);
-                sessionStorage.setItem('adminPassword', password.value);
-                location.href ='/admin';
-        }
-    }catch(err){
-        console.log(err.message)
-    }  
-});
+
 
 shoppingCart.addEventListener('click', ()=>{
     if(cart.length>0){

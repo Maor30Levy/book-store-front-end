@@ -13,7 +13,6 @@ body{
 }
 #container{
     padding: 0;
-
 }
 .fa{
 
@@ -49,12 +48,20 @@ body{
 
 #admin-check{
     grid-area: login;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
 }
 
 #login-form>button{
     grid-area: button;
 }
 
+#signup-form>*{
+    padding:0.5rem;
+}
+#login-form>*{
+    padding:0.5rem;
+}
 
 #header-buttons{
     display: flex;
@@ -178,28 +185,45 @@ button:hover {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
+#sign{
+    display: flexbox;
+}
+#sign>*{
+    padding: 0.5rem;
+    color: #7C5CBF;
+    font-weight: 700;
+}
+#sign>*:hover{
+    cursor: pointer;
+    background-color: #7C5CBF;
+    color:wheat;
+}
+
 @media only screen and (max-width: 720px) {
     *{
         min-width:100%;
         margin: 0;
     }
-
+   
     #login-form{
-        width:65%;
-        align-self: flex-end;
-        min-width:0;
-        grid-template-columns: 1fr 2fr 2fr;
-        grid-template-areas:' login input input'
-                            ' login button button';
-
+        min-width: 0%;
+        display: flex;
+        flex-direction: column;
+        padding:0.5rem;
     }
-
+    #login-form{
+        min-width: 0%;
+        display: flex;
+        flex-direction: column;
+        padding:0.5rem;
+    }
 
     #login-form>button{
         grid-area: button;
-        padding:0;
     }
- 
+ #sign{
+     min-width: 0%;
+ }
 
     #shopping-cart{
         max-width: 15%;
@@ -213,7 +237,6 @@ button:hover {
         max-height: 50vh;
     }
     .book{
-        height:85vh;
         padding: 0;
         grid-template-areas: 'title title title  title title'
                             'author author author author author'
@@ -224,6 +247,10 @@ button:hover {
                             'button button button button button'
                             
                              ;
+    }
+    .book>div:hover{
+        background-color: white;
+        color:wheat;
     }
     .book>*{
         max-height: 12.5%;
@@ -240,14 +267,11 @@ button:hover {
 
 
     #search-form{
-    display:flex;
-    max-width: 95vw;
-    flex-wrap: wrap;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     }
     #search-form>input{
         padding: 0.5rem;
-        max-width: 33%;
-        min-width: 33%;
     }
     #search-form>button{
         min-width: 100%;
