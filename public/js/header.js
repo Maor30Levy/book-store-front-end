@@ -49,7 +49,7 @@ loginForm.addEventListener('submit',async (event)=>{
                     location.href ='/admin';
             }
         }else{
-console.log('false3774');
+console.log('false');
         }
         
     }catch(err){
