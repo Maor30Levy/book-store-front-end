@@ -31,9 +31,11 @@ app.get('/cart', (req,res)=>{
     res.render('cart');
 });
 
-app.get('/book/:isbn', (req,res)=>{
-    const isbn = req.params.isbn;
-    res.render('book');
+app.get('/book/:title', (req,res)=>{
+    const title = "book";
+    res.render('book'),{
+        title:title
+    };
 });
 
 

@@ -1,0 +1,106 @@
+#header-container{
+    padding: 0;
+    position: relative;
+    z-index: 100;
+}
+
+#header{
+    position:fixed;
+    padding: 0;
+    width: 100vw;
+    background: yellowgreen;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center; 
+    z-index: 100;
+}
+
+#login-form{
+    display: grid;
+    grid-template-areas:'input input input input button'
+                        'login  login login login login';
+
+}
+
+#admin-check{
+    grid-area: login;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+#login-form>button{
+    grid-area: button;
+}
+
+#signup-form>*{
+    padding:0.5rem;
+}
+#login-form>*{
+    padding:0.5rem;
+}
+
+#header>*{
+    color: #7C5CBF;
+    font-weight: 700;
+    min-width:0;
+    padding: 0.5rem;
+}
+
+#header-buttons{
+    display: flex;
+    flex-direction: row;
+    gap:0.5rem;
+}
+
+#header-buttons>button{
+    font-size: 2rem;
+}
+
+.sign{
+    display: flexbox;
+}
+
+.sign>*:hover{
+    cursor: pointer;
+    background-color: #7C5CBF;
+    color:wheat;
+}
+
+.fa{
+    display:inline;
+}
+
+@media only screen and (max-width: 720px) {
+    #login-form{
+        min-width: 0%;
+        display: flex;
+        flex-direction: column;
+        padding:0.5rem;
+    }
+    #login-form{
+        min-width: 0%;
+        display: flex;
+        flex-direction: column;
+        padding:0.5rem;
+    }
+    #login-form>button{
+        grid-area: button;
+    }
+    .sign{
+     min-width: 0%;
+    }
+
+    #shopping-cart{
+        max-width: 15%;
+    }
+
+    #header-buttons{
+        min-width: 30vw;
+    }
+    
+    #header-buttons>button{
+        min-width: 15vw;
+
+    }
+}

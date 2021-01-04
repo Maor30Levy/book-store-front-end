@@ -4,63 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
-    <link rel="shortcut icon" href="img/book-store-icon.png" type="image/x-icon">
+    <link rel="icon" href="img/book-store-icon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/book-class.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
-<body>
-    <div id="container">  
-        <div id="header" class="header">
-            <div id="header-buttons">
-                <button id="home">
-                    <i class="fa fa-home"></i>
-                </button>
-                <button id="shopping-cart">
-                    <i class="fa fa-shopping-cart"></i>
-                </button>
-            </div>  
-            <div id="sign">
-                <div id="sign-in">Sign in</div>
-                <div id="sign-up">Sign up</div>
-            </div>                 
-        </div>
-        <div id="modal" class="none">
-            <div class="modal__box login" id="login-modal">              
-            <form id="login-form">
-                <input type="text" id="login-username" placeholder="User Name">
-                <input type="password" id="login-password" placeholder="Password">
-                <button id="login">Login</button>
-                <div  id="admin-check">
-                    <input id="admin" type="checkbox" name="admin" value="admin">
-                    Login as admin
-                </div>
-            </form>
-            </div>
-            <div class="modal__box signup" id="signup-modal">              
-                <form id="signup-form">
-                    <input type="text" id="signup-username" placeholder="User Name">
-                    <input type="password" id="signup-password" placeholder="Password">               
-                    <input type="password" id="signup-confirm-password" placeholder="Confirm Password">               
-                    <input type="text" id="signup-email" placeholder="E-Mail">
-                    <button id="signup">Sign up</button>
-                </form>
-            </div>      
-    </div>   
+<body class='none'>
+    <div id="container">    
+        {{>header}}  
         <div id="main-box">            
                 <div id="search">
                     <form id="search-form">
                         <input type="text" id="title" placeholder="Title">
                         <input type="text" id="author" placeholder="Author">
-                        <input type="text" id="category" placeholder="Category">
-                        
+                        <input type="text" id="category" placeholder="Category">                       
                         <input type="text" id="fromPrice" placeholder="From:Price">
-                        <input type="text" id="toPrice" placeholder="To:Price">
-                                                
+                        <input type="text" id="toPrice" placeholder="To:Price">                                               
                         <input type="text" id="isbn" placeholder="ISBN(13)"> 
                         <button id="search">Find Book</button>            
                     </form>
-                    <div id="result-box" class="none">
+                    <div id="result-box" class="result-box">
 
                     </div>
                 </div>
@@ -68,7 +33,7 @@
         <div id="footer"></div>
     </div>
 
-    <script type="module" src="js/header.js"></script>
+    {{>footer}}
     <script type="module" src="js/main.js"></script>
 </body>
 </html>

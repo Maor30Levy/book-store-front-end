@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/img/book-store-icon.png" type="image/x-icon">
+    <link rel="icon" href="/img/book-store-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/book.css">
-    <title>Book</title>
+    <title>{{title}}</title>
 
 </head>
 <body>
 
     <div id="container">
-        <div id="header-container">
-            <div id="header"></div>
-        </div>
+        {{>header}} 
         <div id="book">
             <div id="image"></div>
             <div id="main">
@@ -41,7 +41,7 @@
             
         </div>       
     </div>
-
+    {{>footer}}
     <script type="module" src="/js/book.js"></script>
 </body>
 </html>

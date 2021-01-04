@@ -1,4 +1,5 @@
 #main-box{
+    margin-top: 90px;
     flex-grow: 1;
     height: 100%;
 }

@@ -1,7 +1,10 @@
-export const serverURL = 'https://maor30levy-book-store-back-end.herokuapp.com';
+// export const serverURL = 'https://maor30levy-book-store-back-end.herokuapp.com';
+export const serverURL = 'http://localhost:3001';
+
 export const bookFields = ['title','author','category','price','isbn','image','summary'];
 export const userFields = ['userName','password','email'];
 export let dataBase;
+export let costumersDataBase;
 export const initDataBase = async ()=>{
     try{
     const result = await fetch(`${serverURL}/books/`);
@@ -21,8 +24,35 @@ export const initDataBase = async ()=>{
         return dataBase = [];
     }
 };
-initDataBase();
 
+export const initCostumerDataBase = async ()=>{
+    try{
+    const result = await fetch(`${serverURL}/costumer/getUserNames`);
+        if(!result.ok){
+            throw {
+                    status: result.status,
+                    message: result.statusText
+                }
+        }   
+        const resObj = await result.json();
+        sessionStorage.setItem('costumersDataBase',JSON.stringify(resObj));
+        return costumersDataBase =resObj;   
+  
+    }catch(err){
+        console.log(err.message);
+        sessionStorage.setItem('costumersDataBase',JSON.stringify([]));
+        return costumersDataBase = [];
+    }
+};
+
+export const initMainPage = async (element,renderButtons)=>{
+    if(!dataBase){
+        await initDataBase();
+        await initCostumerDataBase();
+    }
+    document.body.className='';
+    getDataFromDataBase(element,{},renderButtons);
+};
 const filterQuery = (object,query)=>{
     for(let key in query){
         switch(key){

@@ -13,11 +13,10 @@ body{
 }
 #container{
     padding: 0;
+    display: flex;
+    flex-direction: column;
 }
-.fa{
 
-    display:inline;
-}
 .none{
     display: none;
 }
@@ -25,58 +24,7 @@ body{
     display:flex;
     line-height: 1.4;
     color: #333333; 
-    max-width:100vw;
-    
-}
-
-#header{
-    padding: 0;
-    width: 100vw;
-    background: yellowgreen;
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between; 
-    z-index: 100;
-}
-
-#login-form{
-    display: grid;
-    grid-template-areas:'input input input input button'
-                        'login  login login login login';
-
-}
-
-#admin-check{
-    grid-area: login;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-}
-
-#login-form>button{
-    grid-area: button;
-}
-
-#signup-form>*{
-    padding:0.5rem;
-}
-#login-form>*{
-    padding:0.5rem;
-}
-
-#header-buttons{
-    display: flex;
-    flex-direction: row;
-    min-width:0;
-    max-width:20vw;
-    gap:1rem;
-}
-
-#header-buttons>button{
-    font-size: 2rem;
-}
-
-#header>*{
-    padding: 0.5rem;
+    max-width:100vw;   
 }
 
 input {
@@ -98,75 +46,6 @@ button:hover {
     background: #6b47b8;
 }
 
-.book{
-    display: grid;
-    min-height:100%;
-    padding: 0.5rem;
-    max-height: 26rem;
-    width: 100%;
-    grid-template-areas: 'title title title  title title'
-                        'author author author author author'
-                        'category category image image image'
-                        'price     price   image image image'
-                        'isbn      isbn    image image image'
-                        'rating   rating   image image image'
-                        'button button button button button'
-                         ;
-}
-.book>#title{
-    font-weight: 600;
-    font-size: 1.25rem;
-    grid-area: title;
-    margin: center;
-}
-.book>#author{
-    font-size: 1.25rem;
-    grid-area: author;
-}
-.book>#price{
-    grid-area: price;
-    font-weight: 600;
-    font-size: 2rem;
-    color: #6b47b8;
-
-}
-.book>#price:hover{
-    color:wheat;
-
-}
-.book>#category{
-    grid-area: category;
-}
-.book>#isbn{
-    grid-area: isbn;
-}
-.book>#rating{
-    grid-area: rating;
-}
-.book>#image{
-    grid-area: image;
-    width:170px;
-    height: auto;
-    padding: 0;
-
-}
-.book>*{
-    cursor: pointer;
-    width:100%;
-}
-.book>div:hover{
-    background-color: #7C5CBF;
-    color:wheat;
-}
-.book>#buttons{
-    grid-area:button;
-    display: flex;
-}
-.book>#buttons:hover{
-    background-color: white;
-    
-}
-
 .result-box{
     margin:auto ;
     max-width: 90vw;    
@@ -185,79 +64,22 @@ button:hover {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-#sign{
-    display: flexbox;
-}
-#sign>*{
-    padding: 0.5rem;
-    color: #7C5CBF;
-    font-weight: 700;
-}
-#sign>*:hover{
-    cursor: pointer;
-    background-color: #7C5CBF;
-    color:wheat;
-}
-
 @media only screen and (max-width: 720px) {
     *{
         min-width:100%;
         margin: 0;
     }
-   
-    #login-form{
-        min-width: 0%;
-        display: flex;
-        flex-direction: column;
-        padding:0.5rem;
-    }
-    #login-form{
-        min-width: 0%;
-        display: flex;
-        flex-direction: column;
-        padding:0.5rem;
-    }
-
-    #login-form>button{
-        grid-area: button;
-    }
- #sign{
-     min-width: 0%;
- }
-
-    #shopping-cart{
-        max-width: 15%;
-    }
+      
     #result-box{
         display:flex;
         flex-direction: column;
         padding: 0;
     }
+
     #result-box>img{
         max-height: 50vh;
     }
-    .book{
-        padding: 0;
-        grid-template-areas: 'title title title  title title'
-                            'author author author author author'
-                            'category category image image image'
-                            'price     price   image image image'
-                            'isbn      isbn    image image image'
-                            'rating   rating   image image image'
-                            'button button button button button'
-                            
-                             ;
-    }
-    .book>div:hover{
-        background-color: white;
-        color:wheat;
-    }
-    .book>*{
-        max-height: 12.5%;
-    }
-    .book>img{
-        max-height: 100%;
-    }
+    
     #buttons{
         display:flex;
         flex-direction: column;
@@ -265,16 +87,18 @@ button:hover {
         gap: 0.125rem;        
     }
 
-
     #search-form{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+        display:grid;
+        grid-template-columns: repeat( auto-fit, minmax(85px, 1fr) );
     }
+    
     #search-form>input{
         padding: 0.5rem;
     }
+    
     #search-form>button{
+        padding: 0.5rem;
         min-width: 100%;
+        grid-column: 3 / span 2;
     }
-
 }

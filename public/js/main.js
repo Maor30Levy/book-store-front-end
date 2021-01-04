@@ -1,4 +1,4 @@
-import {getDataFromDataBase ,initFormQuery,renderAddCommentButton,serverURL}  from './utils.js' ;
+import {initMainPage,getDataFromDataBase ,initFormQuery,renderAddCommentButton,serverURL,initDataBase}  from './utils.js' ;
 
 let cart;
 if(sessionStorage.getItem('cart')){
@@ -55,7 +55,6 @@ const renderButtons = (query)=>{
 const searchBook = ()=>{
     const query = initFormQuery(form);
     getDataFromDataBase(resultBox,query,renderButtons);
-    resultBox.className = "result-box";
 }
 
 for(let input of inputList){
@@ -85,3 +84,7 @@ shoppingCart.addEventListener('click', ()=>{
         alert('Your cart is emptey!');
     }
 });
+
+
+
+initMainPage(resultBox,renderButtons);

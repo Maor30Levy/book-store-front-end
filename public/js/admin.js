@@ -1,5 +1,5 @@
 
-import {initDataBase, getDataFromDataBase,initFormQuery, serverURL,bookFields, userFields}  from './utils.js' ;
+import {initMainPage,initDataBase, getDataFromDataBase,initFormQuery, serverURL,bookFields, userFields}  from './utils.js' ;
 const token = sessionStorage.getItem('token');
 const bearer = `Bearer ${token}`;
 
@@ -20,6 +20,7 @@ const searchBook = ()=>{
     getDataFromDataBase(resultBox,query,renderButtons);
     resultBox.className = "result-box";
 }
+
 
 for(let input of inputList){
     input.addEventListener('keyup',()=>{
@@ -104,23 +105,8 @@ const renderButtons = (query)=>{
     }
 };
 
-logout.addEventListener('click',async ()=>{
-    try{
-        const result = await fetch(`${serverURL}/user/logout`,{
-            method: 'POST',
-            headers: {
-                'Authorization': bearer,
-                'Content-Type': 'application/json'
-            }
-        });
-        if(result.ok){
-            sessionStorage.setItem('token','');
-            location.href='/';
-        }
-    }catch(err){
-        console.log(err.message)
-    }
-});
+initMainPage(resultBox,renderButtons);
+
 
 logoutAll.addEventListener('click',async ()=>{
     try{

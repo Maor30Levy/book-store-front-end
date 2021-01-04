@@ -1,0 +1,95 @@
+.book{
+    display: grid;
+    min-height:100%;
+    padding: 0.5rem;
+    max-height: 26rem;
+    width: 100%;
+    grid-template-areas: 'title title title  title title'
+                        'author author author author author'
+                        'category category image image image'
+                        'price     price   image image image'
+                        'isbn      isbn    image image image'
+                        'rating   rating   image image image'
+                        'button button button button button'
+                         ;
+}
+.book>#title{
+    font-weight: 600;
+    font-size: 1.25rem;
+    grid-area: title;
+    margin: center;
+}
+.book>#author{
+    font-size: 1.25rem;
+    grid-area: author;
+}
+.book>#price{
+    grid-area: price;
+    font-weight: 600;
+    font-size: 2rem;
+    color: #6b47b8;
+
+}
+.book>#price:hover{
+    color:wheat;
+
+}
+.book>#category{
+    grid-area: category;
+}
+.book>#isbn{
+    grid-area: isbn;
+}
+.book>#rating{
+    grid-area: rating;
+}
+.book>#image{
+    grid-area: image;
+    width:170px;
+    height: auto;
+    padding: 0;
+
+}
+.book>*{
+    cursor: pointer;
+    width:100%;
+}
+.book>div:hover{
+    background-color: #7C5CBF;
+    color:wheat;
+}
+.book>#buttons{
+    grid-area:button;
+    display: flex;
+}
+.book>#buttons:hover{
+    background-color: white;
+    
+}
+
+@media only screen and (max-width: 720px) {
+    .book{
+        padding: 0;
+        grid-template-areas: 'title title title  title title'
+                            'author author author author author'
+                            'category category image image image'
+                            'price     price   image image image'
+                            'isbn      isbn    image image image'
+                            'rating   rating   image image image'
+                            'button button button button button'
+                            
+                             ;
+    }
+    
+    .book>div:hover{
+        background-color: white;
+        color:wheat;
+    }
+    .book>*{
+        max-height: 12.5%;
+    }
+    .book>img{
+        max-height: 100%;
+    }
+
+}
