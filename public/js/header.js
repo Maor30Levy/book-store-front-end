@@ -68,16 +68,17 @@ loginForm.addEventListener('submit',async (event)=>{
             })
             });
         if(result.ok){
-                const tokenObj = await result.json();
-                token = tokenObj.token;
+                const resObj = await result.json();
+                token = resObj.token;
                 sessionStorage.setItem('token', token);
                 bearer = `Bearer ${token}`;
-                sessionStorage.setItem('username',username.value)
-                renderHeader(username.value);
-                modal.className='none'; 
+                sessionStorage.setItem('username',username.value);
                 if(router==='user'){
                     sessionStorage.setItem('adminPassword', password.value);
                     location.href ='/admin';
+                }else{
+                    sessionStorage.setItem('cart',JSON.stringify(resObj.costumer.cart));
+                    location.href='/';
                 }
         }
         
@@ -198,12 +199,13 @@ signupForm.addEventListener('submit',async (event)=>{
         });
         if(result.status===201){
                 await initCostumerDataBase();
-                const tokenObj = await result.json();
-                token = tokenObj.token;
+                const resObj = await result.json();
+                token = resObj.token;
                 sessionStorage.setItem('token',token);
                 bearer = `Bearer ${token}`;
-                renderHeader();
-                modal.className='none';               
+                sessionStorage.setItem('username',newUser.userName); 
+                sessionStorage.setItem('cart',JSON.stringify(resObj.costumer.cart));
+                location.href='/';          
         }else if(result.status===400){
             const message = 'Invalid email address';
             renderErrorSignupForm(message);
@@ -235,6 +237,7 @@ logout.addEventListener('click',async ()=>{
             if(router==='user'){
                 sessionStorage.setItem('adminPassword', '');
             }
+            sessionStorage.setItem('cart',JSON.stringify([]));
             location.href='/';
         }   
     }catch(err){
