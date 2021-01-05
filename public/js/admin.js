@@ -106,38 +106,11 @@ const renderButtons = (query)=>{
 
 initMainPage(resultBox,renderButtons);
 
-
-logoutAll.addEventListener('click',async ()=>{
-    try{
-        const result = await fetch(`${serverURL}/user/logout-all`,{
-            method: 'POST',
-            headers: {
-                'Authorization': bearer,
-                'Content-Type': 'application/json'
-            }
-        });
-        if(result.ok){
-            sessionStorage.setItem('token','');
-            location.href='/';
-        }
-    }catch(err){
-        console.log(err.message)
-    }
-});
-
-
-     
-
-
-
-
 addBookButton.addEventListener('click', ()=>{
     const createModalBookForm = renderModal();
     saveButton.name='add';
     createModalBookForm(saveButton.name);        
 });
-
-
 
 saveButton.addEventListener('click',async (event) => {        
     if(event.target.name==='add'){
@@ -197,6 +170,25 @@ saveButton.addEventListener('click', async (event)=>{
     }
         event.stopPropagation();
 });
+
+
+// logoutAll.addEventListener('click',async ()=>{
+//     try{
+//         const result = await fetch(`${serverURL}/user/logout-all`,{
+//             method: 'POST',
+//             headers: {
+//                 'Authorization': bearer,
+//                 'Content-Type': 'application/json'
+//             }
+//         });
+//         if(result.ok){
+//             sessionStorage.setItem('token','');
+//             location.href='/';
+//         }
+//     }catch(err){
+//         console.log(err.message)
+//     }
+// });
 
 
 

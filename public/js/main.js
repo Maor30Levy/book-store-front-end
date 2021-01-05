@@ -110,3 +110,6 @@ shoppingCart.addEventListener('click', ()=>{
 
 
 initMainPage(resultBox,renderButtons);
+if(sessionStorage.getItem('adminPassword')){
+    location.href='/admin';
+}

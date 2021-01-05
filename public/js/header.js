@@ -19,6 +19,13 @@ document.getElementById('menu-icon').addEventListener('click',(event)=>{
     sidebar.className=sidebar.className==='none'?'sidebar':'none';
 });
 
+const renderAvatar = (user)=>{
+    const avatar = document.getElementById('avatar');
+    const router = sessionStorage.getItem('adminPassword')?'user':'costumer';
+    const url=`${serverURL}/${router}/${user.userName}/avatar`;
+    avatar.src= user.avatar?url:'/img/anonymous-avatar';
+};
+
 
 document.getElementById('sign-in').addEventListener('click',()=>{
     document.getElementById('login-modal').className = 'login-modal';
@@ -33,11 +40,20 @@ const renderHeader = (username=undefined)=>{
         document.getElementById('hello').className='';
         document.getElementById('hello').innerText=`Hello, ${username}`;
         document.getElementById('avatar-div').className = '';
+        if(sessionStorage.getItem('adminPassword')){
+            document.getElementById('shopping-cart').parentElement.className = 'none';
+            document.getElementById('add-book').parentElement.className = '';
+        }else{
+            document.getElementById('shopping-cart').parentElement.className = '';
+            document.getElementById('add-book').parentElement.className = 'none';
+        }
     }else{
         document.getElementById('sign').className='sign';
         document.getElementById('logout').className='none';
         document.getElementById('hello').className='none';
         document.getElementById('avatar-div').className = 'none';
+        document.getElementById('shopping-cart').className = '';
+        document.getElementById('add-book').className = 'none';
     }
 };
 renderHeader(sessionStorage.getItem('username'));
@@ -81,12 +97,14 @@ loginForm.addEventListener('submit',async (event)=>{
                 sessionStorage.setItem('username',username.value);
                 if(router==='user'){
                     sessionStorage.setItem('adminPassword', password.value);
+                    
                     location.href ='/admin';
                 }else{
                     sessionStorage.setItem('cart',JSON.stringify(resObj.costumer.cart));
                     sessionStorage.setItem('costumerPassword', password.value);
                     location.href='/';
                 }
+                // renderAvatar(resObj);
         }
         
     }catch(err){
@@ -213,7 +231,7 @@ signupForm.addEventListener('submit',async (event)=>{
                 sessionStorage.setItem('username',newUser.userName); 
                 sessionStorage.setItem('cart',JSON.stringify(resObj.costumer.cart));
                 sessionStorage.setItem('costumerPassword', newUser.password);
-
+                // renderAvatar(resObj);
                 location.href='/';          
         }else if(result.status===400){
             const message = 'Invalid email address';

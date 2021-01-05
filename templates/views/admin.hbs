@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/book-store-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/book-class.css">
     <link rel="stylesheet" href="css/admin.css">
-    <link rel="shortcut icon" href="img/book-store-icon.png" type="image/x-icon">
+    
 
     <title>Admin</title>
 </head>
 <body>
 <div id="container">
-    <div id="modal" class="none">
-        <div class="modal__box" id="modal-box">              
-        </div>
-        <div class="modal__buttons">
-            <button id="save-button">Save</button>
-            <button id="cancel-button">Cancel</button>
-        </div>  
-    </div>
-    <div id="search">
+    {{>header}}
+     
+    <div id="main-box">
+        {{>sidebar}}
+        <div id="search">
                 <form id="search-form">
                     <input type="text" id="title" placeholder="Title">
                     <input type="text" id="author" placeholder="Author">
@@ -35,16 +36,26 @@
 
                 </div>
             </div>
+    </div> 
+    <div id="modal" class="none">
+        <div class="modal__box" id="modal-box">              
+        </div>
+        <div class="modal__buttons">
+            <button id="save-button">Save</button>
+            <button id="cancel-button">Cancel</button>
+        </div>  
+    </div>
+    
 
-    <div id="sidebar" class="admin__sidebar">
+    {{!-- <div id="sidebar" class="admin__sidebar">
         <button id="logout">Logout</button>
         <button id="logout-all">Logout All</button>
         <button id="update-user" name="edit-button">Update User</button>
         <button id="add-book" name="edit-button">Add a book record</button>
-    </div>
+    </div> --}}
 </div>    
     
- 
+ {{>footer}}
  <script type="module" src='js/admin.js'></script>   
 </body>
 </html>
