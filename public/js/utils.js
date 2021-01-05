@@ -1,10 +1,15 @@
-export const serverURL = 'https://maor30levy-book-store-back-end.herokuapp.com';
-// export const serverURL = 'http://localhost:3001';
+// export const serverURL = 'https://maor30levy-book-store-back-end.herokuapp.com';
+export const serverURL = 'http://localhost:3001';
 
 export const bookFields = ['title','author','category','price','isbn','image','summary'];
 export const userFields = ['userName','password','email'];
 export let dataBase;
 export let costumersDataBase;
+
+const modal = document.getElementById('modal');
+const modalBox = document.getElementById('modal-box');
+
+
 export const initDataBase = async ()=>{
     try{
     const result = await fetch(`${serverURL}/books/`);
@@ -183,7 +188,54 @@ export const addSubQuery = (event,key,obj,element,buttonsRenderFunc)=>{
     const value = key==='price'?parseInt(obj[key]):obj[key];
     query[key]=value;
     getDataFromDataBase(element,query,buttonsRenderFunc);
-}
+};
 
+export const renderModal = ()=>{
+    modal.className = 'modal';
+    const cancelButton = document.getElementById('cancel-button');
+    const editButton = document.getElementsByName('edit-button');
+    const createModalBookForm = (eventButton)=>{
+        for (let i=0;i<bookFields.length;i++){
+            
+            const label = document.createElement('label');       
+            const element = document.createElement('input');
+            if(bookFields[i]==='price'){
+                element.type='number'
+            }else{
+                element.type='text' 
+            }
+            if(bookFields[i]==='isbn' && eventButton==='update'){
+                element.readOnly=true;
+            }
+            element.id= bookFields[i];   
+            label.innerText=bookFields[i].toUpperCase();
+            label.appendChild(element);
+            const div = document.createElement('div');
+            div.appendChild(label);
+            modalBox.appendChild(div); 
+        }
+    };
+    while(modalBox.firstChild){
+        modalBox.removeChild(modalBox.lastChild);
+    }
+    modal.addEventListener('click', () => {
+        modal.className = 'none';
+        while(modalBox.firstChild){
+            modalBox.removeChild(modalBox.lastChild);
+        }
+    });
 
+    for(let button of editButton){
+        button.addEventListener('click', () => {
+            modal.className = 'modal';
+        });
+    }
+    cancelButton.addEventListener('click', () => {
+        modal.className = 'none';
+    });
 
+    modalBox.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+    return createModalBookForm;
+};

@@ -1,27 +1,14 @@
 #main-box{
-    display: flex;
-    flex-direction: column;
-    margin-top: 90px;
     flex-grow: 1;
     height: 100%;
 }
 
-.modal {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: rgba(192, 192, 192, 0.5);
-    display: grid;
+.login-modal {
     justify-content: end;
-    grid-row: 2;
-    z-index:10;
-    padding: 0;
-    
+    padding: 0;  
 }
 
-.modal__box{
+#login-modal>.modal__box{
     margin: 85px 0 0 0;
     height: 80px;
     display: flexbox;

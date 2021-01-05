@@ -8,29 +8,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
     <link rel="stylesheet" href="/css/book-class.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body class='none'>
     <div id="container">    
-        {{>header}}  
-        <div id="main-box">            
-                <div id="search">
-                    <form id="search-form">
-                        <input type="text" id="title" placeholder="Title">
-                        <input type="text" id="author" placeholder="Author">
-                        <input type="text" id="category" placeholder="Category">                       
-                        <input type="text" id="fromPrice" placeholder="From:Price">
-                        <input type="text" id="toPrice" placeholder="To:Price">                                               
-                        <input type="text" id="isbn" placeholder="ISBN(13)"> 
-                        <button id="search">Find Book</button>            
-                    </form>
-                    <div id="result-box" class="result-box">
-
-                    </div>
-                </div>
+        {{>header}}      
+        <div id="main-box">  
+            {{>sidebar}}            
+            <div id="search">
+                <form id="search-form">
+                    <input type="text" id="title" placeholder="Title">
+                    <input type="text" id="author" placeholder="Author">
+                    <input type="text" id="category" placeholder="Category">                       
+                    <input type="text" id="fromPrice" placeholder="From:Price">
+                    <input type="text" id="toPrice" placeholder="To:Price">                                               
+                    <input type="text" id="isbn" placeholder="ISBN(13)"> 
+                    <button id="search">Find Book</button>            
+                </form>
+                <div id="result-box" class="result-box"></div>
+            </div>
         </div>
-        <div id="footer"></div>
     </div>
 
     {{>footer}}

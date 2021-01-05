@@ -14,11 +14,6 @@ body{
     min-height: 95vh;
 }
 
-#header{
-    padding: 0;
-    background: yellowgreen;
-    position:fixed;
-}
 #book{
     display:flex;
     margin-top: 30px;

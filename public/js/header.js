@@ -1,7 +1,7 @@
 import {serverURL,initCostumerDataBase}  from './utils.js' ;
 
 
-const modal = document.getElementById('modal');
+const modal = document.getElementById('login-modal');
 const modalBoxList= modal.children;
 const loginForm = document.getElementById('login-form');
 const signupForm = document.getElementById('signup-form');
@@ -10,35 +10,41 @@ const signPassword = document.getElementById('signup-password');
 const signConfirmPassword = document.getElementById('signup-confirm-password');
 const signEmail = document.getElementById('signup-email');
 const errorMessageDiv = document.getElementById('error-message');
-const logout =  document.getElementById('sign-out');
 
 let token =sessionStorage.getItem('token') || '';
 let bearer =  `Bearer ${token}`;
 
+document.getElementById('menu-icon').addEventListener('click',(event)=>{
+    const sidebar = document.getElementById('sidebar');
+    sidebar.className=sidebar.className==='none'?'sidebar':'none';
+});
+
 
 document.getElementById('sign-in').addEventListener('click',()=>{
-    document.getElementById('modal').className = 'modal';
+    document.getElementById('login-modal').className = 'login-modal';
     document.getElementById('signup-modal').className = 'none';
-    document.getElementById('login-modal').className = 'modal__box login';
+    document.getElementById('signin-modal').className = 'modal__box login';
 });
 
 const renderHeader = (username=undefined)=>{
     if(token){
         document.getElementById('sign').className='none';
-        document.getElementById('logged-in').className='sign';
+        document.getElementById('logout').className='';
         document.getElementById('hello').className='';
         document.getElementById('hello').innerText=`Hello, ${username}`;
+        document.getElementById('avatar-div').className = '';
     }else{
         document.getElementById('sign').className='sign';
-        document.getElementById('logged-in').className='none';
+        document.getElementById('logout').className='none';
         document.getElementById('hello').className='none';
+        document.getElementById('avatar-div').className = 'none';
     }
 };
 renderHeader(sessionStorage.getItem('username'));
 
 document.getElementById('sign-up').addEventListener('click',()=>{
-    document.getElementById('modal').className = 'modal';
-    document.getElementById('login-modal').className = 'none';
+    document.getElementById('login-modal').className = 'login-modal';
+    document.getElementById('signin-modal').className = 'none';
     document.getElementById('signup-modal').className = 'modal__box signup';
 });
 modal.addEventListener('click', () => {
@@ -78,6 +84,7 @@ loginForm.addEventListener('submit',async (event)=>{
                     location.href ='/admin';
                 }else{
                     sessionStorage.setItem('cart',JSON.stringify(resObj.costumer.cart));
+                    sessionStorage.setItem('costumerPassword', password.value);
                     location.href='/';
                 }
         }
@@ -205,6 +212,8 @@ signupForm.addEventListener('submit',async (event)=>{
                 bearer = `Bearer ${token}`;
                 sessionStorage.setItem('username',newUser.userName); 
                 sessionStorage.setItem('cart',JSON.stringify(resObj.costumer.cart));
+                sessionStorage.setItem('costumerPassword', newUser.password);
+
                 location.href='/';          
         }else if(result.status===400){
             const message = 'Invalid email address';
@@ -222,25 +231,3 @@ signupForm.addEventListener('submit',async (event)=>{
     
 });
 
-logout.addEventListener('click',async ()=>{  
-    try{
-        const router = sessionStorage.getItem('adminPassword')?'user':'costumer';
-            const result = await fetch(`${serverURL}/${router}/logout`,{
-                method: 'POST',
-                headers: {
-                    'Authorization': bearer,
-                    'Content-Type': 'application/json'
-                }
-            });
-        if(result.ok){
-            sessionStorage.setItem('token','');
-            if(router==='user'){
-                sessionStorage.setItem('adminPassword', '');
-            }
-            sessionStorage.setItem('cart',JSON.stringify([]));
-            location.href='/';
-        }   
-    }catch(err){
-        console.log(err.message)
-    }
-});

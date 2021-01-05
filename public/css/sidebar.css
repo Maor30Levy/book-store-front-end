@@ -1,0 +1,55 @@
+.sidebar{
+    box-sizing: border-box;
+    -webkit-transition:width .5s linear;
+    transition:width .5s linear;
+    
+    z-index: 10;
+    position: sticky;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(75, 73, 77);
+    color: #7C5CBF;
+    width: 250px;
+}
+.sidebar>*{
+    -webkit-transition:all .62s linear;
+    transition:all .62s linear;
+    position: inherit;
+    top: 0px;
+    border-radius: 50%;
+    padding: 0.5rem;
+}
+
+.sidebar>div>button>.fa{
+    color: rgb(75, 73, 77);
+    min-width: 0;
+    margin: 0;
+}
+
+.sidebar>div>button{
+    font-size: 2rem;
+    border-radius: 50%;
+    color: rgb(75, 73, 77);
+    width: 75px;
+    height: 75px;
+}
+
+.sidebar>div>img{
+    max-height: 75px;
+    border-radius: 50%;
+    
+}
+
+@media only screen and (max-width: 820px) {
+    .sidebar{
+        top:60.8px;
+        flex-direction: row;
+    }
+    .sidebar>*{
+        padding: .5rem;
+        min-width: 0;
+    }
+
+
+}
