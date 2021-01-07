@@ -1,5 +1,5 @@
 
-import {initMainPage, renderModal, initDataBase, getDataFromDataBase,initFormQuery, serverURL,bookFields, userFields}  from './utils.js' ;
+import {alertModal,initMainPage, renderModal, initDataBase, getDataFromDataBase,initFormQuery, serverURL,bookFields, userFields}  from './utils.js' ;
 const token = sessionStorage.getItem('token');
 const bearer = `Bearer ${token}`;
 
@@ -57,7 +57,7 @@ const initUpdateBookButton = (buttonsDiv,bookElement,query)=>{
                 modalBox.querySelector(`#${field}`).value = resObj[field];
             }                                                                                  
         }catch(err){
-            alert(err.message)
+            alertModal(err.message)
             modal.className='none';
             console.log(err);
             }
@@ -79,13 +79,13 @@ const initDeleteBookButton = (buttonsDiv,bookElement,query)=>{
                 }
             });
             if(result.status===200){                  
-                    alert('Book deleted successfully!');
+                    alertModal('Book deleted successfully!');
                     bookElement.remove();
                     await initDataBase();
                     getDataFromDataBase(resultBox,query,renderButtons);
             }else{
                 const message = 'Unable to delete book';
-                alert(message);
+                alertModal(message);
                 throw {status: result.status,message}
             }
         }catch(err){
@@ -107,6 +107,7 @@ const renderButtons = (query)=>{
 initMainPage(resultBox,renderButtons);
 
 addBookButton.addEventListener('click', ()=>{
+    location.href='/admin';
     const createModalBookForm = renderModal();
     saveButton.name='add';
     createModalBookForm(saveButton.name);        
@@ -130,10 +131,10 @@ saveButton.addEventListener('click',async (event) => {
             });
             if(result.status===201){
                     await initDataBase();                
-                    alert('Book added successfully!')
+                    alertModal('Book added successfully!')
             }else{
                 const message = 'Unable to add new book';
-                alert(message);
+                alertModal(message);
                 throw {status: result.status,message}
             }
         }catch(err){
@@ -158,13 +159,13 @@ saveButton.addEventListener('click', async (event)=>{
             body: JSON.stringify(record)
         });
         if(result.status===200){                                
-            alert('Book updated successfully!');
+            alertModal('Book updated successfully!');
             modal.className='none';
             await initDataBase();
             getDataFromDataBase(resultBox,JSON.parse(saveButton.title),renderButtons);                
         }else{
             const message = 'Unable to update book record';
-            alert(message);
+            alertModal(message);
             throw {status: result.status,message}
         }
     }

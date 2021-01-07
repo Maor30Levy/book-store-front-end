@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/img/book-store-icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/sidebar.css">
+    {{>links}}
     <link rel="stylesheet" href="/css/book.css">
     <title>{{title}}</title>
 
@@ -18,36 +14,36 @@
         {{>header}}
         <div id="main-box">
             {{>sidebar}} 
-            <div id="book">
-            <div id="image"></div>
-            <div id="main">
-                <div id='bookTitle'></div>
-                <div id='details'>
-                    <div id="rating"></div>                        
-                    <div id="type-and-lang"></div>
-                    <div id="author"></div>
-                </div>
-                <div id='summary'></div>
-            </div>
-        </div>
-        <div id="other-details">
-            <div id="format"></div>
-            <div id="language"></div>
-            <div id="isbn"></div>
-            <div id="publication-date"></div>
-            <div id="publisher"></div>
-            <div id="publication-location"></div>
+            <div id="book-container">
+                <div id="book">
+                    <div id="main">
+                        <div id='bookTitle'></div>
+                        <div id='details'>
+                            <div id="author"></div>
+                            <div id="rating"></div>                        
+                            <div id="type-and-lang"></div>
+                        </div>
+                    </div>
+                    <div id="image"></div>
+                    <div id='summary'></div>
 
-        </div>
-        <div id="buttons"></div>
-        <div id="comments">
-            
-        </div>
-        </div>
-             
-               
-    </div>
-    {{>footer}}
+                </div>
+                <div id="other-details">
+                    <div id="format"></div>
+                    <div id="language"></div>
+                    <div id="isbn"></div>
+                    <div id="publication-date"></div>
+                    <div id="publisher"></div>
+                    <div id="publication-location"></div>
+                </div>
+                <div id="buttons"></div>
+                <div id="comments"></div>
+            </div> 
+        </div>                   
+        {{>footer}}
+</div>    
+    
+ {{>scripts}}
     <script type="module" src="/js/book.js"></script>
 </body>
 </html>

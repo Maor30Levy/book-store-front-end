@@ -1,61 +1,106 @@
-#container{
-    margin: auto;
-    display: grid;
-    grid-template-rows: 9fr 1fr;
-    width: 100vw;
-    border: 0.5rem black solid;
-    background: rgb(187, 219, 122);
+#main{
+    width:100%;
+    align-items: center;
 }
-#container>*{
-    margin: auto;
-}
+
 #result{
+    width:100%;
     display: grid;
+    gap: 0.5rem;
+
 }
 .cart__book{
+    padding: 1rem;
     background: white;
     display: grid;
-    max-height: 12rem;
-    grid-template-areas: 'price image'
-                        'title image'
-                        'blank remove';
-    width: 75%;
-    border: 0.25rem black solid;
+    grid-template-areas:'image title blank blank  price '
+                        'image details blank blank  amount'
+                        'image details blank blank  quantity'
+                        'image details blank blank   remove';
+    justify-content: space-between;
+    row-gap:0.5rem;
+
 }
 .cart__book>#title{
     grid-area: title;
     font-weight: 600;
     font-size: 1.5rem;
 }
+
+.cart__book>#quantity{
+    grid-area: quantity;
+    max-width: 50px;
+    min-width: 0;
+    text-align: center; 
+}
+.cart__book>#amount{
+    grid-area: amount;
+    font-size: smaller;
+    font-weight: 800;
+}
+
 .cart__book>#price{
     grid-area: price;
 }
 .cart__book>img{
     grid-area: image;
-    max-height: 7rem;
-    max-height: 7rem;
+    max-height: 10rem;
+    margin-right: 0px;
 }
 #remove{
-    width:100%;
+    min-width:100%;
     margin-bottom: 0.25rem;
     margin-right: 0.25rem;
-    padding: 0.25rem;
+    padding: 0.5rem;
     background: red;
     color: wheat;
-    width:5rem;
     cursor: pointer;
     grid-area: remove;
     font-weight: 600;
+    border-radius: 5px;
+    font-size: 90%;
 }
 #remove:hover{
     background: rgb(206, 114, 114);
 
 }
-#buttons>*{
+
+#buttons{
+    width: 300px;
     margin: auto;
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.5rem;
+}
+
+#buttons>*{
+width: 100%;
 }
 #total{
     margin:auto;
     font-weight: 600;
     font-size: 1.5rem; 
+}
+
+@media only screen and (max-width: 820px) {
+    .cart__book{
+        padding: 0.25rem;
+        grid-template-areas: 'title image'
+                            'price image'
+                            'quantity image'
+                            'amount image'
+                            'remove remove';
+        max-height:100%;
+    }
+    #remove{
+        text-align: center;
+    }
+    #total{
+        text-align: center;
+    }
+
+    #buttons{
+        flex-direction: column;
+        row-gap: 0.5rem;
+    }
 }

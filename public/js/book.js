@@ -9,6 +9,7 @@ const renderBook = ()=>{
     const bookObj = dataBase.filter((object)=>{
      return object.isbn===isbn;   
     })[0];
+    document.title=bookObj.title;
     const imageDiv = document.getElementById('image');
     const image = document.createElement('img');
     image.src=bookObj.image; 

@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/book-store-icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/sidebar.css">
+    {{>links}}
     <link rel="stylesheet" href="/css/book-class.css">
     <link rel="stylesheet" href="css/admin.css">
     
@@ -53,9 +49,10 @@
         <button id="update-user" name="edit-button">Update User</button>
         <button id="add-book" name="edit-button">Add a book record</button>
     </div> --}}
+     {{>footer}}
 </div>    
     
- {{>footer}}
+ {{>scripts}}
  <script type="module" src='js/admin.js'></script>   
 </body>
 </html>

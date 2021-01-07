@@ -1,0 +1,1 @@
+setTimeout(()=>{location.href="/"}, 1250);

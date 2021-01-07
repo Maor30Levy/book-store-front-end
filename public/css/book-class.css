@@ -1,7 +1,8 @@
 .book{
+    background: white;
     display: grid;
     min-height:100%;
-    padding: 0.5rem;
+    padding: 0.25rem;
     max-height: 26rem;
     width: 31vw;
     grid-template-areas: 'title title title  title title'
@@ -12,17 +13,21 @@
                         'rating   rating   image image image'
                         'button button button button button'
                          ;
+    border-radius: 3px;
 }
+
 .book>#title{
     font-weight: 600;
     font-size: 1.25rem;
     grid-area: title;
     margin: center;
 }
+
 .book>#author{
     font-size: 1.25rem;
     grid-area: author;
 }
+
 .book>#price{
     grid-area: price;
     font-weight: 600;
@@ -30,41 +35,52 @@
     color: #6b47b8;
 
 }
+
 .book>#price:hover{
     color:wheat;
 
 }
+
 .book>#category{
     grid-area: category;
 }
+
 .book>#isbn{
     grid-area: isbn;
 }
+
 .book>#rating{
     grid-area: rating;
 }
+
 .book>#image{
     grid-area: image;
     width:170px;
     height: auto;
     padding: 0;
+    margin: auto;
+    grid-column: 3/ span 3;
 
 }
+
 .book>*{
     cursor: pointer;
     width:100%;
 }
+
 .book>div:hover{
     background-color: #7C5CBF;
     color:wheat;
-    border-radius: 5%;
+    border-radius: 5px;
 }
+
 .book>#buttons{
     grid-area:button;
     display: flex;
     gap: 0.25rem;
 
 }
+
 .book>#buttons:hover{
     background-color: white;
     
@@ -72,6 +88,7 @@
 
 #buttons>button{
     width: 100%;
+    font-size: smaller;
 }
 
 @media only screen and (max-width: 820px) {
@@ -92,11 +109,12 @@
         background-color: white;
         color:wheat;
     }
+
     .book>*{
         max-height: 12.5%;
     }
+
     .book>img{
         max-height: 100%;
     }
-
 }

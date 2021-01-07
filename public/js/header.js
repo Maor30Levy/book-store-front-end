@@ -1,4 +1,4 @@
-import {serverURL,initCostumerDataBase}  from './utils.js' ;
+import {alertModal,serverURL,initCostumerDataBase}  from './utils.js' ;
 
 
 const modal = document.getElementById('login-modal');
@@ -16,7 +16,10 @@ let bearer =  `Bearer ${token}`;
 
 document.getElementById('menu-icon').addEventListener('click',(event)=>{
     const sidebar = document.getElementById('sidebar');
-    sidebar.className=sidebar.className==='none'?'sidebar':'none';
+    sidebar.classList.toggle('none');
+    sidebar.classList.toggle('sidebar');
+    
+
 });
 
 const renderAvatar = (user)=>{

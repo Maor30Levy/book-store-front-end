@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
-    <link rel="icon" href="img/book-store-icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/sidebar.css">
+    {{>links}}
     <link rel="stylesheet" href="/css/book-class.css">
     <link rel="stylesheet" href="/css/index.css">
 </head>
@@ -30,9 +26,12 @@
                 <div id="result-box" class="result-box"></div>
             </div>
         </div>
-    </div>
+        
+        {{>footer}}
 
-    {{>footer}}
+</div>    
+    
+ {{>scripts}}
     <script type="module" src="js/main.js"></script>
 </body>
 </html>

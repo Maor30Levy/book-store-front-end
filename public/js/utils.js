@@ -107,7 +107,6 @@ export const renderResults=function (element, objArray,query,buttonsRenderFunc){
                     location.href=`/book/${obj.title}`;
                 });
             }else{
-                // divElement.addEventListener('click',addSubQuery(event,key,obj,element,buttonsRenderFunc));
                 if(location.pathname[1]!=='b'){
                     divElement.addEventListener('click',(event)=>{
                     const query = {};
@@ -177,7 +176,7 @@ export const renderAddCommentButton = ()=>{
         const addCommentButton = document.createElement('button');
         addCommentButton.innerText='Add comment';
         addCommentButton.addEventListener('click',()=>{
-                alert('Comment added!');
+                alertModal('Comment added!');
         });
         button.appendChild(addCommentButton);
     }
@@ -238,4 +237,45 @@ export const renderModal = ()=>{
         event.stopPropagation();
     });
     return createModalBookForm;
+};
+
+
+export const alertModal = (message)=>{
+    const alertModal = document.getElementById('alert-modal');
+    const alertBox = document.getElementById('alert-box');
+    const okButton = document.getElementById('ok-button');
+    
+    alertModal.className='modal';
+    
+    alertBox.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    okButton.addEventListener('click', (event) => {
+        alertModal.className='none';
+    });
+
+    alertModal.addEventListener('click', (event) => {
+        alertModal.className='none';
+    });
+
+    alertBox.innerText=message;
+};
+
+export const editCostumerCart = async ()=>{
+    if(sessionStorage.getItem('token')){
+        try{
+            await fetch(`${serverURL}/costumer/edit`,{
+                method: 'PATCH',
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({cart: sessionStorage.getItem('cart')})
+            });
+        }catch(err){
+            console.log(err.message)
+        }
+    }
+       
 };

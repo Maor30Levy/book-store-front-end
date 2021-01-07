@@ -1,4 +1,4 @@
-import {serverURL, renderModal, userFields}  from './utils.js' ;
+import {alertModal,serverURL, renderModal, userFields}  from './utils.js' ;
 
 
 const logout =  document.getElementById('logout');
@@ -10,10 +10,11 @@ const modalBox = document.getElementById('modal-box');
 
 updateUserButton.addEventListener('click', async (event)=>{
     renderModal();
-    saveButton.name='user-update';    
+    saveButton.name='user-update';
+    const isAdmin = sessionStorage.getItem('adminPassword')?true:false;    
     try{
         let router,password;
-        if(sessionStorage.getItem('adminPassword')){
+        if(isAdmin){
             router='user';
             password=sessionStorage.getItem('adminPassword');
         }else{
@@ -32,16 +33,17 @@ updateUserButton.addEventListener('click', async (event)=>{
             throw err;
         }
         const resObj = await result.json();
+        const user = isAdmin?resObj[0]:resObj;
         for(let field of userFields){
             const label = document.createElement('label');       
             const element = document.createElement('input');
             element.id = field;
             if(field==='password'){
-                element.value = sessionStorage.getItem('adminPassword')?
+                element.value = isAdmin?
                 sessionStorage.getItem('adminPassword'):
                 sessionStorage.getItem('costumerPassword');
             }else{
-                element.value = resObj[field];
+                element.value = user[field];
             }     
             label.innerText = field.toUpperCase();
             label.appendChild(element);
@@ -99,11 +101,11 @@ saveButton.addEventListener('click', async (event)=>{
             body: JSON.stringify(record)
         });
         if(result.status===200){                                
-            alert('User updated successfully!');
+            alertModal('User updated successfully!');
             modal.className='none';                
         }else{
             const message = 'Unable to update user';
-            alert(message);
+            alertModal(message);
             throw {status: result.status,message}
         }
     }

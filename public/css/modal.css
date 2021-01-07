@@ -1,0 +1,150 @@
+.modal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(192, 192, 192, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index:10;
+}
+
+.modal>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.modal>div>*{
+    justify-content: center;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.modal__box {
+    background: rgb(245, 247, 243);
+    display: flexbox;
+    flex-direction: column;
+    padding: 10px;
+    overflow-y: auto;
+    justify-content: stretch;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.modal__buttons{
+    margin: auto 0.5rem;
+    align-content: center;
+}
+
+.modal__buttons>button{
+    width: 40%;
+    
+}
+
+.login-modal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(192, 192, 192, 0.5);
+    display: flex;
+    justify-content: end;
+    padding: 0;  
+    z-index:10;
+}
+
+.login-modal>.modal__box{
+    margin: 60.8px 15px 0 0;
+    height: 80px;
+    display: flexbox;
+    padding: 0.125rem;
+    overflow-y: auto;
+    justify-content: center;    
+}
+
+.login-modal>.signup{
+    display: flex;
+    flex-direction: column;
+}
+
+#alert-modal {
+    padding: 0;
+}
+
+#alert-container{
+    padding: 0;
+    border-radius: 5px;
+}
+
+#alert-container>* {
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+}
+
+#alert-container>.modal__box {
+    min-width: 200px;
+    min-height: 100px;
+    text-align: center; 
+}
+
+#alert-container>.modal__buttons>button {
+    min-width:100%;  
+}
+
+#alert-container>.modal__buttons {
+    min-width:100%;
+    background: rgb(138, 138, 137);
+
+}
+
+@media only screen and (max-width: 820px) {
+    .modal{
+        align-items: flex-start;
+    }
+
+    .modal__box { 
+        padding: 0;
+        align-self: start;    
+        min-width: 100vw;
+    }
+
+    .modal>div{
+        padding: 0;
+        margin-top: 60.8px;
+        flex-direction: column;
+    }
+
+    .modal__buttons{
+        padding: 0;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 0;
+
+    }
+
+    .login-modal>.modal__box{
+        margin-right: 0px;
+    }
+
+    .login-modal>.login{
+        height:160px;
+    }
+
+    .login-modal>.signup{
+        height:180px;
+    }
+
+    #alert-container>.modal__box {
+        min-width: 100vw;        
+    }
+    #alert-container>.modal__buttons {
+        min-width: 100vw;        
+    }
+}

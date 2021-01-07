@@ -32,10 +32,13 @@ app.get('/cart', (req,res)=>{
 });
 
 app.get('/book/:title', (req,res)=>{
-    const title = "book";
-    res.render('book'),{
-        title:title
-    };
+    res.render('book');
+});
+
+app.get('/*', (req,res)=>{
+    res.render('errorPage',{
+        errorMessage:'Page not found'
+    });
 });
 
 

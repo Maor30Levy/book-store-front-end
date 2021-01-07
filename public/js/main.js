@@ -1,4 +1,4 @@
-import {initMainPage,getDataFromDataBase ,initFormQuery,renderAddCommentButton,serverURL,initDataBase}  from './utils.js' ;
+import {editCostumerCart,alertModal,initMainPage,getDataFromDataBase ,initFormQuery,renderAddCommentButton,serverURL,initDataBase}  from './utils.js' ;
 
 let cart;
 if(sessionStorage.getItem('cart')){
@@ -14,34 +14,21 @@ const inputList = form.querySelectorAll('input');
 const resultBox = document.getElementById('result-box');
 const shoppingCart = document.getElementById('shopping-cart');
 
-const editCostumerCart = async ()=>{
-    if(sessionStorage.getItem('token')){
-        try{
-            await fetch(`${serverURL}/costumer/edit`,{
-                method: 'PATCH',
-                headers: {
-                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({cart: sessionStorage.getItem('cart')})
-            });
-        }catch(err){
-            console.log(err.message)
-        }
-    }
-       
-};
+
 
 const cartButton = (isbn,query)=>{
     const cartButtonElement = document.createElement('button');
     const cartIconHTML = '<i class="fa fa-shopping-cart"></i>'; 
     let label ='';
-    if(cart.includes(isbn)){
+    const bookObj = cart.filter((book)=>{
+        return book.isbn===isbn
+    });
+    if(bookObj.length>0){
         label = 'Remove from cart';
         cartButtonElement.style='background: red';
         cartButtonElement.addEventListener('click', async (event)=>{
             cart = cart.filter((cell)=>{
-                return cell!==isbn;
+                return cell.isbn!==isbn;
             });
             sessionStorage.setItem('cart',JSON.stringify(cart));
             await editCostumerCart();
@@ -51,7 +38,7 @@ const cartButton = (isbn,query)=>{
     }else{
         label = 'Add to cart';
         cartButtonElement.addEventListener('click', async (event)=>{
-            cart.push(isbn);
+            cart.push({isbn,quantity:1});
             sessionStorage.setItem('cart',JSON.stringify(cart));
             await editCostumerCart();
             getDataFromDataBase(resultBox, query,renderButtons);
@@ -103,7 +90,7 @@ shoppingCart.addEventListener('click', ()=>{
         sessionStorage.setItem('cart',JSON.stringify(cart));
         location.href='/cart';   
     }else{
-        alert('Your cart is emptey!');
+        alertModal('Your cart is emptey!');
     }
 });
 
