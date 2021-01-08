@@ -1,4 +1,4 @@
-import {alertModal,serverURL, renderModal, userFields}  from './utils.js' ;
+import {alertModal,serverURL, renderModal, initDataBase, userFields,bookFields}  from './utils.js' ;
 
 
 const logout =  document.getElementById('logout');
@@ -6,7 +6,13 @@ const updateUserButton = document.getElementById('avatar-div');
 const saveButton = document.getElementById('save-button');
 const modal = document.getElementById('modal');
 const modalBox = document.getElementById('modal-box');
+const addBookButton = document.getElementById('add-book');
 
+addBookButton.addEventListener('click', ()=>{
+    const createModalBookForm = renderModal();
+    saveButton.name='add';
+    createModalBookForm(saveButton.name);        
+});
 
 updateUserButton.addEventListener('click', async (event)=>{
     renderModal();
@@ -111,3 +117,36 @@ saveButton.addEventListener('click', async (event)=>{
     }
     event.stopPropagation();
 });
+
+saveButton.addEventListener('click',async (event) => {        
+    if(event.target.name==='add'){
+        modal.className = 'none';
+        const record = {};
+        for(let key of bookFields){
+            record[key] = document.getElementById(key).value
+        }
+        try{               
+            const result = await fetch(`${serverURL}/books/new`,{
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(record)
+            });
+            if(result.status===201){
+                    await initDataBase();                
+                    alertModal('Book added successfully!')
+            }else{
+                const message = 'Unable to add new book';
+                alertModal(message);
+                throw {status: result.status,message}
+            }
+        }catch(err){
+            console.log(err.message)
+        }
+    }               
+    event.stopPropagation();
+}); 
+
+

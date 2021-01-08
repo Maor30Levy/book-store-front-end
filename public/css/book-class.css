@@ -89,6 +89,13 @@
 #buttons>button{
     width: 100%;
     font-size: smaller;
+
+}
+
+@media only screen and (min-width: 820.001px) {
+    .book>#image{
+        height: 251px;
+    }
 }
 
 @media only screen and (max-width: 820px) {

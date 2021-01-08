@@ -1,4 +1,4 @@
-import {alertModal,serverURL,editCostumerCart} from './utils.js';
+import {editCostumerCart} from './utils.js';
 const dataBase = JSON.parse(sessionStorage.getItem('dataBase'));
 const resultBox = document.getElementById('result')
 const cancelButton = document.getElementById('cancel')

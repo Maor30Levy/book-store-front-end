@@ -1,4 +1,4 @@
-import {renderResults,renderAddCommentButton,addSubQuery} from './utils.js';
+import {renderAddCommentButton} from './utils.js';
 const result = document.getElementById('result');
 const dataBase = JSON.parse(sessionStorage.getItem('dataBase'));
 const isbn = sessionStorage.getItem('bookISBN');
@@ -51,7 +51,7 @@ const renderBook = ()=>{
     isbnDiv.innerHTML=`<b>ISBN: </b>${isbn}`;
 
     const commentsDiv = document.getElementById('comments');
-    renderAddCommentButton();
+    renderAddCommentButton(isbn);
     const comments = bookObj.comments;
     if(comments.length===0){
         commentsDiv.innerText='No comments has been added so far, be the first one to do so!';

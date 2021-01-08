@@ -7,9 +7,6 @@ const form = document.getElementById('search-form');
 const inputList = form.querySelectorAll('input');
 
 const resultBox = document.getElementById('result-box');
-const logout =  document.getElementById('logout');
-const logoutAll =  document.getElementById('logout-all');
-const addBookButton = document.getElementById('add-book');
 const saveButton = document.getElementById('save-button');
 const modal = document.getElementById('modal');
 const modalBox = document.getElementById('modal-box');
@@ -19,7 +16,6 @@ const searchBook = ()=>{
     getDataFromDataBase(resultBox,query,renderButtons);
     resultBox.className = "result-box";
 }
-
 
 for(let input of inputList){
     input.addEventListener('keyup',()=>{
@@ -104,46 +100,6 @@ const renderButtons = (query)=>{
     }
 };
 
-initMainPage(resultBox,renderButtons);
-
-addBookButton.addEventListener('click', ()=>{
-    location.href='/admin';
-    const createModalBookForm = renderModal();
-    saveButton.name='add';
-    createModalBookForm(saveButton.name);        
-});
-
-saveButton.addEventListener('click',async (event) => {        
-    if(event.target.name==='add'){
-        modal.className = 'none';
-        const record = {};
-        for(let key of bookFields){
-            record[key] = document.getElementById(key).value
-        }
-        try{               
-            const result = await fetch(`${serverURL}/books/new`,{
-                method: 'POST',
-                headers: {
-                    'Authorization': bearer,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(record)
-            });
-            if(result.status===201){
-                    await initDataBase();                
-                    alertModal('Book added successfully!')
-            }else{
-                const message = 'Unable to add new book';
-                alertModal(message);
-                throw {status: result.status,message}
-            }
-        }catch(err){
-            console.log(err.message)
-        }
-    }               
-    event.stopPropagation();
-}); 
-
 saveButton.addEventListener('click', async (event)=>{                   
     if(event.target.name==='update'){
         const record={};
@@ -172,24 +128,9 @@ saveButton.addEventListener('click', async (event)=>{
         event.stopPropagation();
 });
 
+initMainPage(resultBox,renderButtons);
 
-// logoutAll.addEventListener('click',async ()=>{
-//     try{
-//         const result = await fetch(`${serverURL}/user/logout-all`,{
-//             method: 'POST',
-//             headers: {
-//                 'Authorization': bearer,
-//                 'Content-Type': 'application/json'
-//             }
-//         });
-//         if(result.ok){
-//             sessionStorage.setItem('token','');
-//             location.href='/';
-//         }
-//     }catch(err){
-//         console.log(err.message)
-//     }
-// });
+
 
 
 

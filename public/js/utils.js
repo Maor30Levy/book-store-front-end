@@ -8,6 +8,7 @@ export let costumersDataBase;
 
 const modal = document.getElementById('modal');
 const modalBox = document.getElementById('modal-box');
+const saveButton = document.getElementById('save-button');
 
 
 export const initDataBase = async ()=>{
@@ -170,13 +171,14 @@ export const initFormQuery = (form)=>{
     return query;
 };
 
-export const renderAddCommentButton = ()=>{
+export const renderAddCommentButton = (isbn)=>{
     const buttons = document.querySelectorAll('#buttons');
     for(let button of buttons){
         const addCommentButton = document.createElement('button');
+        const bookID = isbn || button.parentElement.id;
         addCommentButton.innerText='Add comment';
-        addCommentButton.addEventListener('click',()=>{
-                alertModal('Comment added!');
+        addCommentButton.addEventListener('click', ()=>{
+            addComment(bookID);
         });
         button.appendChild(addCommentButton);
     }
@@ -239,7 +241,6 @@ export const renderModal = ()=>{
     return createModalBookForm;
 };
 
-
 export const alertModal = (message)=>{
     const alertModal = document.getElementById('alert-modal');
     const alertBox = document.getElementById('alert-box');
@@ -279,3 +280,91 @@ export const editCostumerCart = async ()=>{
     }
        
 };
+
+export const addComment = (isbn)=>{
+    renderModal();
+    const ratingDiv = document.createElement('div');
+    const commentDiv = document.createElement('div');
+    ratingDiv.id='rating-div';
+    ratingDiv.addEventListener('mouseout',()=>{
+        for(let i=0;i<5;i++){
+            const hoverStar = ratingDiv.querySelector(`#star${i}`);
+                hoverStar.innerHTML='&#9734';
+        }
+        for(let i=0;i<ratingDiv.value;i++){
+            const hoverStar = ratingDiv.querySelector(`#star${i}`);
+                hoverStar.innerHTML='&#9733';
+        }
+    })
+    for(let i=0;i<5;i++){
+        const star = document.createElement('span');
+        star.id=`star${i}`;
+        star.innerHTML='&#9734';
+        star.addEventListener('mouseover',()=>{
+            for(let j=0;j<=i;j++){
+                const hoverStar = document.getElementById(`star${j}`);
+                hoverStar.innerHTML='&#9733';
+            }
+            
+        });
+        star.addEventListener('mouseout',()=>{
+            for(let j=0;j<=i;j++){
+                const hoverStar = document.getElementById(`star${j}`);
+                hoverStar.innerHTML='&#9734';
+            }  
+        });
+        star.addEventListener('click',()=>{
+            ratingDiv.value = (i+1);
+        });
+        ratingDiv.appendChild(star);
+    }
+    commentDiv.id='comment-div';
+    const comment = document.createElement('textarea');
+    comment.wrap="soft";
+    comment.id="comment";
+    comment.placeholder="Add your comment here...";
+    comment.rows='14';
+    commentDiv.appendChild(comment);
+    saveButton.title=isbn;
+    saveButton.name='comment';
+    modalBox.appendChild(ratingDiv);
+    modalBox.appendChild(commentDiv);
+};
+
+saveButton.addEventListener('click',async ()=>{
+    if(saveButton.name==='comment'){
+        const ratingDiv = document.getElementById('rating-div');
+        const comment = document.getElementById('comment');
+        if(ratingDiv.value>0|| comment.value!=='' ){
+            try{
+                const body = {isbn:saveButton.title}
+                if(ratingDiv.value>0){
+                    body.rating = parseInt(ratingDiv.value);
+                }
+                if(comment.value!==''){
+                    body.comment = comment.value;
+                }
+                const result = await fetch(`${serverURL}/books/add-comment`,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                });
+                if(result.status!==200){
+                    const res = await result.json();
+                    throw res;
+                }
+                await initDataBase();
+                alertModal('Comment added!');
+            }catch(err){
+                alertModal(err.message);
+            }
+            
+        }
+
+
+        
+        modal.className='none';
+    }
+});

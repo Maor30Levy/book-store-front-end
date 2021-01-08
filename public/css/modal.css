@@ -19,7 +19,6 @@
 }
 
 .modal>div>*{
-    justify-content: center;
     display: flex;
     justify-content: center;
     gap: 0.5rem;
@@ -104,6 +103,29 @@
 
 }
 
+
+.modal__box>#rating-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#rating-div>span{
+    text-align: center;
+    font-size: larger;
+    cursor: pointer;
+    color: gold;
+    
+}
+
+.modal__box>#comment-div>*{
+    overflow-y: auto;
+    max-height: 50vh;
+}
+.modal>div{
+    margin-top: 50px;
+}
+
 @media only screen and (max-width: 820px) {
     .modal{
         align-items: flex-start;
@@ -146,5 +168,9 @@
     }
     #alert-container>.modal__buttons {
         min-width: 100vw;        
+    }
+    #rating-div>span{
+        min-width: 0;
+        
     }
 }
