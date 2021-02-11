@@ -1,5 +1,5 @@
 // export const serverURL = 'https://maor30levy-book-store-back-end.herokuapp.com';
-export const serverURL = 'https://10.0.2.45:3001';
+export const serverURL = 'http://3.133.153.199:3001';
 // export const serverURL = 'http://localhost:3001';
 
 export const bookFields = ['title','author','category','price','isbn','image','summary'];
